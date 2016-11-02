@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "HTML <strong>Content</strong>"
+title: "एचटीएमएल <strong>Content</strong>"
 subtitle: "What the <strong>Web</strong> is all about"
 section: html
 ---

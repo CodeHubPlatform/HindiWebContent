@@ -1,134 +1,102 @@
 ---
 layout: post
-title: "<strong>Why</strong> CSS exists"
+title: "<strong>क्यों</strong> सीएसएस Exists"
 subtitle: "<strong>Separating</strong> content and styling"
 section: css
 ---
 
-As the Web grew in popularity in the 90s, the intent to apply a specific design to a website grew as well. Web developers relied upon specific HTML tags to enhance webpages:
+### Introduction to CSS 
 
-* `<basefont>` defined a font for a whole HTML document
-* `<font>` defined a typeface, a color, and a size for the text it contains
-* `<center>` horizontally centered all its content
-* `<big>` increased the size of the text
-* `<strike>` rendered text with a strikethrough
+CSS एक designing language है। इसका इस्तेमाल webpages को और भी beautiful बनाने के लिए किया जाता है। CSS के द्वारा आप HTML tags पर designing apply कर सकते है। CSS आप 3 तरह से apply कर सकते है। 
 
-Several HTML attributes could also be used:
+* Inline - इस method में आप CSS को HTML tag में ही define कर देते है। ऐसा आप style attribute के द्वारा करते है।   
+* Internal - इस method में आप CSS को HTML tag में define करने की बजाए HTML file के `<head>` tag में script tag की मदद से define करते है।   
+* External  - इस method में आपकी CSS file और HTML file अलग अलग होती है। HTML file में आप CSS file को `<link>` attribute के द्वारा add करवाते है। 
 
-* `bgcolor` defined a background color on the element
-* `text` defined the text color
-* several `margin` attributes could be used to add space on any side of the element
-
-### Why avoid tables
-
-But most of all, in order to create columns, visually align elements, and generally position elements relatively to each other, Web developers used the `<table>` element to design their webpages because it naturally provided a visual **grid**:
+CSS से आप webpages के presentation को control कर सकते है। CSS आपको webpage की design पर पूरा control देती है। CSS से आप webpage का text color, font family, background, margin, padding और position आदि set कर सकते है। 
+CSS बहुत ही powerful technology है। इसकी मदद से आप complete HTML page की presentation control कर सकते है। CSS property और value के context में काम करती है। जैसे की यदि आप web page का background-color change करना चाहते है तो background-color property है और जो आप value देंगे वो इसकी value होगी।
 
 {% highlight html %}
-<table>
-  <thead>
-    <tr>
-      <th>Logo</th>
-      <th colspan="2">Tagline</th>
-    </tr>
-  </thead>
-  <tfoot>
-    <tr>
-      <th colspan="3">Copyright 2015</th>
-    </tr>
-  </tfoot>
-  <tbody>
-    <tr>
-      <td>Left menu</td>
-      <td>Main content</td>
-      <td>Right sidebar</td>
-    </tr>
-  </tbody>
-</table>
+property:value
 {% endhighlight %}
 
-This approach was cumbersome for several reasons:
+जैसा की मैने ऊपर बताया inline style sheet में आप style attribute यूज़ करते है और internal और external CSS के लिए `<script>` tag के साथ selector यूज़ किये जाते है। Selector उस tag का नाम होता है जिस पर आप CSS apply करना चाहते है।
 
-* HTML tables are **verbose**: they require a lot of boilerplate code
-* the markup was **semantically wrong**: tables should be used for multidimensional data
-* changing the layout required to change the markup: if we wanted to move the left column to the right, we had to **modify the HTML structure**
-* tables were prone to **syntax errors**: rows and cells need to be ordered and nested in a specific way to be valid
-* the markup was **unreadable**: tables were nested within tables to provide additional columns _within_ columns
 
-That is why using tables _for layout purposes_ was slowly abandoned, and CSS was used instead.
+CSS is a 3-part process:
 
-### What CSS is
+* the **selector** defines _who_ is targeted, which HTML element(s)
+* the **property** defines _what_ charateristic to alter
+* the **value** defines _how_ to alter that charateristic
 
-**CSS** stands for **C**ascading **S**tyle **S**heets. Its purpose is to _style_ markup languages (like HTML or XML). Therefore, CSS is worthless on its own, unless associated with an HTML document.
+This whole block (selector/property/value) is a **CSS rule**.
 
-CSS brings an HTML document to **life**, by choosing fonts, applying colors, defining margins, positioning elements, animating interactions, and much more.
+### Advantages of CSS (Cascading Style Sheet)
 
-### How CSS works
+CSS को यूज़ करने से आपका time बचता है। आप एक CSS file बना कर उसे कई HTML documents पर apply कर सकते है। आप हर HTML tag के लिए एक style fix कर सकते है और इसे जितने चाहे उतने webpages पर apply कर सकते है। 
 
-How CSS works is by **selecting** an HTML element (like a paragraph), choosing a **property** to alter (like the color), and applying a certain **value** (like red):
+जब आप HTML attributes के द्वारा webpage को decorate करते है तो हर element के लिए अलग से attribute और value define करनी पड़ती है। ऐसा करने से code बहुत अधिक हो जाता है और pages धीरे load होते है। लेकिन जब आप CSS यूज़ करते है तो उस webpage में यूज़ होने वाले सभी tags के लिए आप एक बार ही styles define करते है। ऐसा करने से code कम रहता है और आपके pages fast load होते है। 
 
-{% highlight css %}
-p{ color: red;}
-{% endhighlight %}
 
-The word _"Style"_ can be deceiving. You might think CSS is only used to change the text's color, size, and font. But CSS is able to define an HTML document's **layout**, by defining heights, widths, inner and outer margins, positions, columns...
-{: .info}
+CSS के द्वारा webpage को maintain करना बहुत ही आसान होता है। उदहारण के लिए आप सभी headings का यदि color change करना चाहते है तो सिर्फ CSS में change कीजिये और ये सभी headings पर apply हो जायेगा। 
+CSS आपको HTML से अधिक style options provide करती है। HTML के comparison में आप CSS से अधिक attractive webpages design कर सकते है। 
+CSS के द्वारा आप एक ही webpage को multiple devices के लिए configure कर सकते है। जैसे की mobile phones के लिए अलग styles यूज़ की जा सकती है। 
+अब HTML attributes का उपयोग बहुत कम हो चूका है। CSS को यूज़ करना अब एक global standard बन चूका है।       
 
-### Where do I write CSS?
 
-#### CSS as an attribute
+### Applying CSS (Cascading style sheet) 
 
-You can write CSS directly on an HTML elements, by using the `style` attribute:
 
-{% highlight html %}
-<p style="color: red;">This text is important.</p>
-{% endhighlight %}
+### Inline style sheet 
 
-#### CSS in the <head>
+निचे दिए गए उदाहरण को देखिये इसमें body tag के अंदर style attribute define किया गया है। इसके बाद style attribute में property और value define की गई है। इसे inline style sheet कहते है।    
 
-You can use a `<style>` tag in the `<head>` of your HTML document:
 
 {% highlight html %}
 <html>
-  <head>
-    <title>Hello World</title>
-    <style type="text/css">
-      p{ color: red;}
-    </style>
-  </head>
-  <body>
-    <p>This paragraph will be red.</p>
-  </body>
-</html>
+<head>
+<title>Inline CSS Demo</title>
+</head>
+<body style="background-color:red;"> <!-- property : value in style attribute -->
+<p>This is inline CSS Demo</p>
+</body>
+</html> 
 {% endhighlight %}
 
-#### CSS in a separate file
+### Internal style sheet 
 
-You can write your CSS in a separate file with a `.css` extension, and then link it to your HTML by using the `<link>` HTML tag.
-
-{% highlight css %}
-p{ color: red;}
-{% endhighlight %}
+Internal style sheet में आप styles को HTML के अंदर define नहीं करते है। Head section में `<script>` tag define किया जाता है। इसके बाद selectors को यूज़ करते हुए आप styles को define करते है। इसमें HTML code और CSS code को एक ही document में define किया जाता है। 
 
 {% highlight html %}
 <html>
-  <head>
-    <title>Hello World</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
-    <p>This paragraph will be red.</p>
-  </body>
+<head>
+<style>
+body 
+{ 
+background-color:red; 
+}
+</style>
+</head>
+<body>
+<p> This is internal CSS Demo</p>
+</body>
 </html>
 {% endhighlight %}
 
-It is the HTML document who "calls" the CSS file, in this case a file called `style.css` located in the same folder as the HTML file.
 
-This **3rd method** of using a separate CSS file is **preferred**.
+### External style sheet
 
-### Why not style directly in the HTML?
+External style sheet के concept में CSS किसी दूसरी file में होती है। उस file को `<link>` tag द्वारा HTML file पर apply किया जाता है। External style sheet से आपको बार बार CSS लिखने की जरुरत नहीं होती है। आप एक ही CSS file को कई HTML files पर apply कर सकते है। इसका उदाहरण निचे दिया जा रहा है। 
 
-Because we want to separate the **content** (HTML) from its **presentation** (CSS).
 
-If you want to visualize the purpose of this distinction, head towards the wonderful [CSS Zen Garden](http://www.csszengarden.com/): each design uses the _exact_ same HTML but a _different_ CSS each time.
 
-It makes **maintenance** easier as well: the same CSS file can be used for a whole website. It provides **flexiblity**: focus on the content on one side, the styling on the other. SEO purposes, different concerns.
+{% highlight html %}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="yourfile.css">
+</head>
+<body>
+<h1>External Stylesheet Demo</h1>
+</body>
+</html>
+{% endhighlight %}

@@ -1,200 +1,147 @@
 ---
 layout: post
-title: "CSS <strong>Selectors</strong>"
+title: "सीएसएस <strong>Selectors</strong>"
 subtitle: "How to <strong>target</strong> HTML elements"
 section: css
 ---
 
-Because we don't want to style all our HTML elements at once, we need to be able to **target** a subset of these HTML elements.
+### CSS background properties 
 
-CSS selectors define _which_ elements we want our styling to be applied to.
+CSS के द्वारा किसी भी HTML element का background set किया जा सकता है। उदाहरण के लिए आप headings को highlight करना चाहते है ऐसी situation में आप CSS के द्वारा सभी headings का background set कर सकते है। 
 
-### Generic tag selectors
 
-Targeting generic HTML tags is easy: just use the tag name.
+Background 2 तरह से set किया जा सकता है। आप चाहे तो background में कोई solid color set कर सकते है या फिर कोई image भी set कर सकते है। Background को set करने के लिए CSS आपको बहुत सी properties provide करती है। आइये इनके बारे में जानने का प्रयास करते है। 
+Setting background color 
 
-{% highlight css %}
-a{ /* Links */ }
-p{ /* Paragraphs */ }
-ul{ /* Unordered lists */ }
-li{ /* List items */ }
-{% endhighlight %}
-
-There's a direct connection between the _name_ of the HTML tag and the CSS _selector_ used.
-
-### Classes
-
-Considering we probably don't want to style all paragraphs or all titles identically, we need to _differentiate_ them.
-
-Of all HTML attributes, the `class` attribute is the most important for CSS. It allows us to define a **group** of HTML elements that we can _target specifically_. Just put a dot `.` in front of the class name you want to use:
-
-{% highlight css %}
-.date {
-  color: red;
-}
-{% endhighlight %}
-
-On one side, there is the HTML `class` attribute with the value `date`. It must match the name of the CSS class.
-
-You can use any name for your CSS class, as long as it doesn't start with a number.
-{: .info}
-
-The `.date` class selector will target all HTML elements that have the `class="date"` attribute. So, the following HTML elements will **all** be styled:
+CSS के द्वारा background color set करने के लिए आप background-color property यूज़ करते है। इस property की value आप color का नाम या hex code दे सकते है। आइये इसे एक उदाहरण से समझते है। 
 
 {% highlight html %}
-<p class="date">
-  Saturday Feb 21
-</p>
-<p>
-  The event will be on <em class="date">Saturday</em>.
-</p>
+<html>
+<head>
+<title>Setting background color</title>
+<style>
+p
+{
+     background-color:gold;
+} 
+</style>    
+</head>
+
+<body>
+
+<h1>Indian economy </h1>
+<p> Indian economy is growing very fast. India is 7th richest country in the world</p>
+
+</body>
+
 {% endhighlight %}
 
-<div class="result">
-  <p style="color:red;">Saturday Feb 21</p>
-  <p>The event will be on <em style="color:red;">Saturday</em>.</p>
-</div>
+ऊपर दिए गए उदाहरण में paragraph का background color CSS के द्वारा change किया गया है। इसी प्रकार दूसरे HTML elements का background color भी आप change कर सकते है। आइये अब CSS के द्वारा background में image set करना सीखते है।
 
-Bear in mind that the tag name is **irrelevant**. Only the `class` HTML attribute is.
+### Setting image background 
 
-### IDs
-
-You can also use the `id` attribute in your HTML, and target it with a hash `#` in your CSS:
-
-{% highlight css %}
-#tagline{ color: orange;}
-{% endhighlight %}
+CSS के द्वारा image को background के रूप में set किया जा सकता है। इसके लिए background-image property यूज़ की जाती है। इस property की value के रूप में image का url दिया जाता है। इसका उदाहरण निचे दिया जा रहा है।
 
 {% highlight html %}
-<h1 id="tagline">This heading will be orange.</h1>
-{% endhighlight %}
-
-ID are similar to Classes, as they rely upon an HTML attribute.
-
-### Example
-
-<div class="table">
-  <table>
-    <thead>
-      <tr>
-        <th>HTML</th>
-        <th>Possible CSS selectors</th>
-        <th>What it means</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><pre><code>&lt;p&gt;&lt;/p&gt;</code></pre></td>
-        <td><code>p</code></td>
-        <td><code>Every &lt;p&gt;</code></td>
-      </tr>
-      <tr>
-        <td><pre><code>&lt;div class="global"&gt;&lt;/div&gt;</code></pre></td>
-        <td>
-          <code>div</code><br>
-          <code>.global</code><br>
-          <code>div.global</code></td>
-          <td>Every <code>&lt;div&gt;</code><br>
-          Every elements with <code>class=”global”</code><br>
-          Every <code>&lt;div&gt;</code> with <code>class=”global”</code>
-        </td>
-      </tr>
-      <tr>
-        <td><pre><code>&lt;ul id="menu"&gt;</code></pre></td>
-        <td>
-          <code>#menu</code><br>
-          <code>ul#menu</code>
-        </td>
-        <td>
-          The only element with <code>id=”menu”</code><br>
-          The only <code>&lt;ul&gt;</code> with <code>id=”menu”</code>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <pre><code>&lt;ol class="dico"&gt;
-  &lt;li&gt;Un cobaye&lt;/li&gt;
-  &lt;li&gt;Des cobaux&lt;/li&gt;
-&lt;/ol&gt;</code></pre>
-        </td>
-        <td>
-          <code>li</code><br>
-          <code>ol li</code><br>
-          <code>.dico li</code>
-        </td>
-        <td>
-          Every <code>&lt;li&gt;</code><br>
-          Every <code>&lt;li&gt;</code> with an <code>&lt;ol&gt;</code> as ancestor <br>
-          Every <code>&lt;li&gt;</code> with a <code>class="dico"</code> element as ancestor
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-### Combining selectors
-
-Let's reuse our previous example where we want our dates to be red:
-
-{% highlight css %}
-.date {
-  color: red;
+<html>
+<head>
+<title>setting image background with css </title>
+<style>
+body
+{
+    background-image:url(http://www.hdwallpapers.in/walls/cosmea_floral_bloom-wide.jpg);
 }
+</style>
+</head>
+
+<body>
+
+<h1>Image background</h1>
+
+<p>There is an image behind this text. </p>
+
+</body>
+
+</html> 
 {% endhighlight %}
+
+कई बार ऐसा हो सकता है की आपकी image बहुत छोटी हो और उससे पूरा background fill नहीं हो रहा हो। ऐसी situation में आप background-image property के बाद background-repeat property यूज़ कर सकते है। इस property की repeat और no-repeat 2 values होती है। जब आप repeat value define करते है तो आपकी image repeat हो जाती है और pure background को fill कर देती है। आइये इसे एक उदाहरण से समझने का प्रयास करते है।
+
+
+
 
 {% highlight html %}
-<p class="date">
-  Saturday Feb 21
-</p>
-<p>
-  The event will be on <em class="date">Saturday</em>.
-</p>
+<html>
+<head>
+<title>background repeat property</title>
+<style>
+body
+{
+    background-image:url(http://www.hdwallpapers.in/walls/cosmea_floral_bloom-wide.jpg);
+    background-repeat:repeat;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Image background repeat example </h1>
+
+<p> This is an example of background image repeating. Background this text
+is an image and it is repeating it self so it can fill the entire background</p> 
+
+</body>
+
+</html>
 {% endhighlight %}
 
-<div class="result">
-  <p style="color:red;">Saturday Feb 21</p>
-  <p>The event will be on <em style="color:red;">Saturday</em>.</p>
-</div>
 
-What if we want our dates that are in `em` elements to blue instead? We can **add** the following CSS rule:
+Background image repeat करने के अलावा आप चाहे तो image को background में किसी certain position पर set कर सकते है। उदाहरण के लिए आप image को left से 50px छोड़कर set करना चाहते है तो ऐसा करना possible है। ऐसा background-position property के द्वारा किया जाता है। में आपको बता दू की इस property को आप background-image property के साथ यूज़ करते है।
+
+Background position property की आप 2 values दे सकते है। पहली value left side से image की दुरी define करती है। और दूसरी value top से image की दुरी define करती है। आइये इसे एक उदाहरण से समझने का प्रयास करते है।
+
+CSS file
 
 {% highlight css %}
-em.date {
-  color: blue;
+h1
+{
+   background-image(/images/flowers/rose.jpg');
+   background-position:100px 50px;
 }
 {% endhighlight %}
+HTML file
 
-The `em.date` combines:
-
-* a tag selector `em`
-* a class selector `.date`
-
-It will only apply to `<em class="date"></em>` HTML elements. It **won't** affect other `.date` or `em`.
-
-### Hierarchy selectors
-
-A **space** in a selector defines a ancestor/descendant relationship. Let's say we want the links in our header to be in red:
-
-{% highlight css %}
-header a {
-  color: red;
-}
+{% highlight html %}
+<html>
+<head>
+<title>Background position demo</title>
+</head>
+<body>
+<h1> Rose </h1>
+<p>Roses are most amazing flowers according to me. I gave my mother rose on mother's day.</p>
+</body>
+</html>
 {% endhighlight %}
 
-This can be read from right to left as: _"Select all `a` elements that are within a `header` element"_. This will prevent all other links (that aren't in the header) from being affected.
+एक और property CSS के द्वारा provide की गई है जिसे आप background images के साथ यूज़ कर सकते है। इस property के द्वारा आप background image को fixed या scroll-able बना सकते है। ये property background-attachment है। इस property की fixed और scroll 2 values हो सकती है। Fixed value से image fixed रहती है उसे scroll नहीं किया जा सकता है। और scroll value से image को scroll-able बनाया जा सकता है। इसका उदाहरण निचे दिया जा रहा है।
 
-### Pseudo-class selectors
-
-HTML elements can have different **states**. The most common case is when you hover over a link. It's possible in CSS to apply a different style when such an event occurs.
-
-Pseudo-class selectors are attached to usual selectors and start with a **colon** `:`:
-
+CSS file
 {% highlight css %}
-a {
-  color: blue;
+p
+{
+  background-image(/images/flowers/orchid.jpg);
+  background-attachment:scroll;
 }
-
-a:hover {
-  color: red;
-}
+{% endhighlight %}
+HTML file
+{% highlight html %}
+<html>
+<head>
+<title>Background attachment demo</title>
+</head>
+<body>
+<h1> This is a heading </h1>
+<p> This is a paragraph. And behind this paragraph there is an image background. This image background is scroll enabled.</p>
+</body>
+</html>
 {% endhighlight %}
